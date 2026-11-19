@@ -1,0 +1,62 @@
+{
+    "name": "ecomdev/magento2-database-streaming",
+    "description": "Magento database streaming components",
+    "type": "library",
+    "require": {
+        "php": "~8.4.0||~8.5.0",
+        "ext-pdo": "*",
+        "magento/framework": "^103.0"
+    },
+    "require-dev": {
+        "ecomdev/magento2-test-essentials": "^2.0",
+        "phpunit/phpunit": "^13.4",
+        "phpmd/phpmd": "^3.0",
+        "brianium/paratest": "^7.7",
+        "squizlabs/php_codesniffer": "^4.0",
+        "phpstan/phpstan": "^2.3"
+    },
+    "license": ["GPL-3.0-or-later", "proprietary"],
+    "authors": [
+        {
+            "name": "Ivan Chepurnyi",
+            "email": "ivan.chepurnyi@ecomdev.org"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "EcomDev\\DatabaseStreaming\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EcomDev\\DatabaseStreaming\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "paratest ./tests/ ",
+        "unit": "paratest ./tests/ --exclude-group=slow",
+        "static:phpstan": "phpstan analyse --level=8 src",
+        "static:phpmd": "phpmd analyze ./src --format text --ruleset ./phpmd.ruleset.xml",
+        "static": [
+            "@static:phpstan",
+            "@static:phpmd",
+            "@format:check"
+        ],
+        "format:check": "phpcs --standard=PSR12 ./src/ ./tests/",
+        "format:write": "phpcbf --standard=PSR12 ./src/ ./tests/"
+    },
+    "repositories": {
+        "magento": {
+            "type": "composer",
+            "url": "https://mirror.mage-os.org/"
+        }
+    },
+    "minimum-stability": "stable",
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": false,
+            "magento/composer-dependency-version-audit-plugin": false
+        }
+    },
+    "$schema": "https://getcomposer.org/schema.json"
+}

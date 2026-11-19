@@ -1,0 +1,5 @@
+/tests export-ignore
+/.github export-ignore
+/.release-please-manifest.json export-ignore
+/release-please-config.json export-ignore
+/*.xml export-ignore

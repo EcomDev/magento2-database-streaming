@@ -1,0 +1,21 @@
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+name: Create Release
+
+jobs:
+  verify-release:
+    uses: ./.github/workflows/php-package.yml
+  release-please:
+    needs: verify-release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v5.0.0
+        with:
+          release-type: php
