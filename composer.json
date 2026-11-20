@@ -15,7 +15,10 @@
         "squizlabs/php_codesniffer": "^4.0",
         "phpstan/phpstan": "^2.3"
     },
-    "license": ["GPL-3.0-or-later", "proprietary"],
+    "license": [
+        "GPL-3.0-or-later",
+        "proprietary"
+    ],
     "authors": [
         {
             "name": "Ivan Chepurnyi",
