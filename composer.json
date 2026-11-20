@@ -35,15 +35,15 @@
     "scripts": {
         "test": "paratest ./tests/ ",
         "unit": "paratest ./tests/ --exclude-group=slow",
-        "static:phpstan": "phpstan analyse --level=8 src",
+        "static:phpstan": "phpstan analyse -c phpstan.neon",
+        "static:phpcs": "phpcs ./src/ ./tests/",
         "static:phpmd": "phpmd analyze ./src --format text --ruleset ./phpmd.ruleset.xml",
         "static": [
             "@static:phpstan",
             "@static:phpmd",
-            "@format:check"
+            "@static:phpcs"
         ],
-        "format:check": "phpcs --standard=PSR12 ./src/ ./tests/",
-        "format:write": "phpcbf --standard=PSR12 ./src/ ./tests/"
+        "format": "phpcbf ./src/ ./tests/"
     },
     "repositories": {
         "magento": {
