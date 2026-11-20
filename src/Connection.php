@@ -19,11 +19,18 @@ use Magento\Framework\DB\Select;
 interface Connection
 {
     public function selectIn(string $field, int $count): Select;
+
     public function selectRange(string $field): Select;
 
     public function prepareSelect(Select $query): Statement;
 
     public function prepare(string $sql): Statement;
+
+    public function beginTransaction(): void;
+
+    public function commit(): void;
+
+    public function rollback(): void;
 
     public function tableName(string $tableName): string;
 }
